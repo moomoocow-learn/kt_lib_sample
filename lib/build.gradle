@@ -21,6 +21,7 @@ plugins {
 
 repositories {
     // Use Maven Central for resolving dependencies.
+    mavenLocal()
     mavenCentral()
 }
 
@@ -62,17 +63,30 @@ testing {
 
 publishing {
     publications {
-        myLibrary(MavenPublication) {
-            from components.java
+        // myLibrary(MavenPublication) {
+        //     from components.java
+        //     artifactId "$rootProject.name-$project.name"
+        // }
+        gpr(MavenPublication) {
+            from(components.java)
             artifactId "$rootProject.name-$project.name"
         }
     }
 
     repositories {
+        // maven {
+        //     name = 'myRepo'
+        //     url = layout.buildDirectory.dir("repo")
+        // }
         maven {
-            name = 'myRepo'
-            url = layout.buildDirectory.dir("repo")
-        }
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/moomoocow-learn/kt_lib_sample")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ID")
+                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }    
+
     }
 }
 
