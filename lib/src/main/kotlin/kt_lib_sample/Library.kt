@@ -3,8 +3,18 @@
  */
 package kt_lib_sample
 
+import java.util.*
+
 class Library {
     fun someLibraryMethod(): Boolean {
         return true
+    }
+
+    fun msg() = Library::class.java.getResource("/test.prop").readText()
+
+    fun libVersion(): String {
+        val prop = Properties()
+        prop.load(Library::class.java.getResourceAsStream("/gradle.properties"))
+        return prop.get("version") as String
     }
 }

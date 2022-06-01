@@ -75,3 +75,27 @@ publishing {
         }
     }
 }
+
+// https://docs.gradle.org/current/dsl/org.gradle.api.tasks.Copy.html
+task copyProp(type: Copy) {
+    from 'gradle.properties'
+    into 'build/resources/main/'
+}
+
+// def copyProp =tasks.register("copyProp"){
+//     from 'gradle.properties'
+//     into 'build/resources/main/'
+// }
+
+processResources.configure {
+    dependsOn copyProp
+}
+
+processResources {
+    doFirst {
+        println 'Task ***** processResources*****'
+    }
+    doLast {
+        // tasks.copyProp.execute()
+    }
+}
