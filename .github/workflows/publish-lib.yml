@@ -23,5 +23,6 @@ jobs:
         run: |
           NEW_VERSION=$(echo "${GITHUB_REF}" | cut -d "/" -f3)
           echo "New version: ${NEW_VERSION}"
-          echo "Github username: ${GITHUB_ACTOR}"          
+          echo "Github username: ${GITHUB_ACTOR}"  
+          echo "GH_ACTOR: ${GH_ACTOR}"
           ./gradlew publish
