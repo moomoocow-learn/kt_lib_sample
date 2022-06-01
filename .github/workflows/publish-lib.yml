@@ -17,4 +17,11 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Execute Gradle build
-        run: ./gradlew publish
+        env:
+          GH_ACTOR: ${{ secrets.GH_ACTOR }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          NEW_VERSION=$(echo "${GITHUB_REF}" | cut -d "/" -f3)
+          echo "New version: ${NEW_VERSION}"
+          echo "Github username: ${GITHUB_ACTOR}"          
+          ./gradlew publish
