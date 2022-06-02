@@ -19,8 +19,8 @@ jobs:
       # https://medium.com/@shanemyrick/publishing-to-github-packages-with-gradle-and-github-actions-4ad842634c4e
       - name: Execute Gradle build
         env:
-          GH_ACTOR: ${{ secrets.GITHUB_ACTOR }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+          GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
         run: |
           NEW_VERSION=$(echo "${GITHUB_REF}" | cut -d "/" -f3)
           echo "New version: ${NEW_VERSION}"
