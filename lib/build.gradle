@@ -81,7 +81,7 @@ publishing {
         maven {
             name = "GitHubPackages"
             // url = uri("https://maven.pkg.github.com/moomoocow-learn/kt_lib_sample")
-            url = uri("https://maven.pkg.github.com/moomoocow-learn")
+            url = uri("https://maven.pkg.github.com/moomoocow-learn/m2")
             credentials {
                 // username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ID")
                 // password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
